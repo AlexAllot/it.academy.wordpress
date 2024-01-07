@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Wordpress - Web" verbose="1">
+
+    <test name="Web Apps - Wordpress">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="apps.web.Wordpress.TestCredentialValidator"/>
+        </classes>
+    </test>
+
+</suite>
