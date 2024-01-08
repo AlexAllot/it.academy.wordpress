@@ -1,6 +1,7 @@
 package apps.web.Wordpress.pages;
 
 import apps.web.BasePageObject;
+import data.constants.TopMenuItems;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,32 @@ public class WordPressHomePage extends BasePageObject {
     }
 
     private final By displayNameLocator = By.xpath("//span[@class='display-name']");
+
+    private static final String ITEM_PATTERN = "//*[contains(@class,'wp-menu-name') and contains(text(),'%s')]";
+
+    public PostsPage clickPostsItemOnHomePage(){
+        log.info("Clicking 'Posts' item on home page ...");
+        waitForWebElementAndClick(getMenuItem(ITEM_PATTERN, TopMenuItems.POSTS), DEFAULT_WAIT_IN_SEC);
+        return new PostsPage(driver, log);
+    }
+
+    public MediaPage clickMediaItemOnHomePage(){
+        log.info("Clicking 'Media' item on home page ...");
+        waitForWebElementAndClick(getMenuItem(ITEM_PATTERN, TopMenuItems.MEDIA), DEFAULT_WAIT_IN_SEC);
+        return new MediaPage(driver, log);
+    }
+
+    public PagesPage clickPagesItemOnHomePage(){
+        log.info("Clicking 'Pages' item on home page ...");
+        waitForWebElementAndClick(getMenuItem(ITEM_PATTERN, TopMenuItems.PAGES), DEFAULT_WAIT_IN_SEC);
+        return new PagesPage(driver, log);
+    }
+
+    public CommentsPage clickCommentsItemOnHomePage(){
+        log.info("Clicking 'Comments' item on home page ...");
+        waitForWebElementAndClick(getMenuItem(ITEM_PATTERN, TopMenuItems.COMMENTS), DEFAULT_WAIT_IN_SEC);
+        return new CommentsPage(driver, log);
+    }
 
     public String getDisplayName(){
        log.info("Getting displayed userName after log in on site");

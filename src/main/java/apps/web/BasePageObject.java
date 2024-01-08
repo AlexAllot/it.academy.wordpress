@@ -1,5 +1,6 @@
 package apps.web;
 
+import data.constants.TopMenuItems;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,8 @@ public class BasePageObject {
     protected Logger log;
     public WebElement element;
     public int DEFAULT_WAIT_IN_SEC = 10;
+
+
 
     public BasePageObject(WebDriver driver, Logger log) {
         this.driver = driver;
@@ -77,13 +80,22 @@ public class BasePageObject {
     /**
      * Return true or false for element
      */
-    public boolean isElementExist(WebElement element) {
-        return element.isDisplayed();
+    public boolean isElementExist() {
+        return false;
     }
 
-    protected void waitForElementPresent(By locator) {
+    public boolean isPageOpened(){
+        return false;
+    }
+
+    protected WebElement waitForElementPresent(By locator) {
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-        driver.findElement(locator);
+        return driver.findElement(locator);
+    }
+
+    public By getMenuItem(String locator, TopMenuItems menuItems){
+        String xpath = String.format(locator, menuItems.getValue());
+        return By.xpath(xpath);
     }
 }

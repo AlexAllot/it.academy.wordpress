@@ -11,9 +11,9 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class TestCredentialValidator extends BasicWebScenario {
+public class TestPositiveLogIn extends BasicWebScenario {
 
-    public TestCredentialValidator() {
+    public TestPositiveLogIn() {
         super(ApplicationIdentifier.WORDPRESS);
     }
 

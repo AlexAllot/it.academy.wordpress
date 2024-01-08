@@ -10,6 +10,7 @@ public class LoginPage extends BasePageObject {
     private final By usernameLocator = By.id("user_login");
     private final By passwordLocator = By.id("user_pass");
     private final By logInBtnLocator = By.id("wp-submit");
+    private final By errorMessageText = By.xpath("//*[contains(text(),'Error')]");
 
     public LoginPage(WebDriver driver, Logger log) {
         super(driver, log);
@@ -19,13 +20,18 @@ public class LoginPage extends BasePageObject {
         openUrl(url);
     }
 
-    /** Execute log in */
-    public WordPressHomePage logIn(String username, String password, int timeOutInSeconds){
+    /**
+     * Execute log in
+     */
+    public void logIn(String username, String password, int timeOutInSeconds){
         log.info("Executing LogIn with username [" + username + "] and password [" + password + "]");
         typeMethod(username, usernameLocator);
         typeMethod(password, passwordLocator);
         waitForWebElementAndClick(logInBtnLocator, timeOutInSeconds);
-        return new WordPressHomePage(driver, log);
+    }
+
+    public String getLogInErrorMessage(){
+        return findElement(errorMessageText).getText();
     }
 
 }
