@@ -12,7 +12,7 @@ public class EditorPostsPage extends BasePageObject {
     private final By savedBtn = new By.ByXPath("//*[@aria-label='Saved']");
     private final By viewPostsBtn = new By.ByXPath("//*[@aria-label='View Posts']");
     private final By publishBtn = new By.ByXPath("//*[@type='button' and contains(@class,'publish')]");
-
+    private final By secondPublishBtn = new By.ByXPath("//div[contains(@class,'editor-post')]/button[text()='Publish']");
     private By frame = By.tagName("iframe");
 
     public EditorPostsPage(WebDriver driver) {
@@ -43,6 +43,23 @@ public class EditorPostsPage extends BasePageObject {
     public boolean isElementExist() {
         element = waitForElementPresent(savedBtn);
         return element.isDisplayed();
+    }
+
+    public boolean isPublishLocatorExist(){
+        element = waitForElementPresent(publishBtn);
+        return element.isDisplayed();
+    }
+
+    public void clickOnViewPostBtn(){
+        waitForWebElementAndClick(viewPostsBtn, DEFAULT_WAIT_IN_SEC);
+    }
+
+    public void clickOnPublishBtn(){
+        waitForWebElementAndClick(publishBtn, DEFAULT_WAIT_IN_SEC);
+    }
+
+    public void clickOnSecondPublishBtn(){
+        waitForWebElementAndClick(secondPublishBtn, DEFAULT_WAIT_IN_SEC);
     }
 
 }

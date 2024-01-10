@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="E2E tests for Wordpress Web">
+
+    <suite-files>
+        <suite-file path="test_login_suite.xml"/>
+        <suite-file path="test_posts_suite.xml"/>
+        <suite-file path="test_wordpress_web.xml"/>
+    </suite-files>
+
+</suite>

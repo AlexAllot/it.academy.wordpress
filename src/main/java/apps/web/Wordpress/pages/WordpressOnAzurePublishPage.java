@@ -4,7 +4,10 @@ import apps.web.BasePageObject;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class WordpressOnAzurePublishPage extends BasePageObject {
@@ -20,14 +23,14 @@ public class WordpressOnAzurePublishPage extends BasePageObject {
         openUrl(wordpressOnAzureMainPageUrl);
     }
 
-    public List<String> postIsNotExistOnAzurePage() {
-        return getTextFromListOfElements(publishedPostsOnPage);
+    public List<String> listElements(){
+        List<WebElement> listOfElements = driver.findElements(publishedPostsOnPage);
+        return new ArrayList<>(listOfElements
+                .stream()
+                .map(WebElement::getText)
+                .filter(a -> a.equals("Test template13"))
+                .toList());
     }
-
-    public List<String> postIsExistOnAzurePage() {
-        return getTextFromListOfElements(publishedPostsOnPage);
-    }
-
 
 }
 

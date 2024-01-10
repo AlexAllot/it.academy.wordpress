@@ -3,6 +3,8 @@ package apps.web.Wordpress;
 import apps.web.BasicWebScenario;
 import apps.web.Wordpress.pages.*;
 import data.constants.ApplicationIdentifier;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -21,8 +23,10 @@ public class TestUtilities extends BasicWebScenario {
     CommentsPage commentsPage;
     WordpressOnAzurePublishPage wordpressOnAzureMainPage;
     String expectedTextTitle = "Test template13";
-
     SoftAssert softAssert;
+    RequestSpecification requestSpecification;
+    Response response;
+
 
     public TestUtilities() {
         super(ApplicationIdentifier.WORDPRESS);

@@ -4,6 +4,7 @@ import apps.web.BasicWebScenario;
 import apps.web.Wordpress.pages.LoginPage;
 import apps.web.Wordpress.pages.WordPressHomePage;
 import data.constants.ApplicationIdentifier;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -36,6 +37,7 @@ public class TestPositiveLogIn extends BasicWebScenario {
     }
 
     @Test(dataProvider = "validUserNameAndPassword")
+    @TmsLink(value = "ID:TC001")
     public void testUserNameAndPasswordValid(String userName, String password, String expectedName) {
         LoginPage loginPage = new LoginPage(driver, log);
         WordPressHomePage wordPressHomePage = new WordPressHomePage(driver, log);

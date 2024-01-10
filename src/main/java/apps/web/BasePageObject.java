@@ -45,14 +45,6 @@ public class BasePageObject {
         return driver.findElement(locator);
     }
 
-    public List<String> getTextFromListOfElements(By locator) {
-        List<WebElement> listOfElements = driver.findElements(locator);
-        return new ArrayList<>(listOfElements
-                .stream()
-                .map(WebElement::getText)
-                .toList());
-    }
-
     /**
      * Click on element with given locator when it's presence
      */

@@ -1,6 +1,7 @@
 package apps.web.Wordpress;
 
 import apps.web.Wordpress.pages.*;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -8,10 +9,9 @@ import org.testng.annotations.Test;
 
 public class TestWordpress extends TestUtilities {
 
-
-
     @Test
     @Parameters({ "username", "password" })
+    @TmsLink(value = "ID:TC011")
     public void testOpenMediaPageSuccessful(String username, String password){
         mediaPage = new MediaPage(driver, log);
         wordPressHomePage = new WordPressHomePage(driver, log);
@@ -23,6 +23,7 @@ public class TestWordpress extends TestUtilities {
 
     @Test
     @Parameters({ "username", "password" })
+    @TmsLink(value = "ID:TC012")
     public void testOpenPagesPageSuccessful(String username, String password){
         pagesPage = new PagesPage(driver, log);
         wordPressHomePage = new WordPressHomePage(driver, log);
@@ -34,6 +35,7 @@ public class TestWordpress extends TestUtilities {
 
     @Test
     @Parameters({ "username", "password" })
+    @TmsLink(value = "ID:TC014")
     public void testOpenCommentsPageSuccessful(String username, String password){
         commentsPage = new CommentsPage(driver, log);
         wordPressHomePage = new WordPressHomePage(driver, log);
@@ -42,7 +44,5 @@ public class TestWordpress extends TestUtilities {
         log.info("Verifying that 'Comments' page is opened ...");
         Assert.assertTrue(commentsPage.isPageOpened(), "'Comments' page wasn't opened");
     }
-
-
 
 }

@@ -3,6 +3,7 @@ package apps.web.Wordpress;
 import apps.web.BasicWebScenario;
 import apps.web.Wordpress.pages.LoginPage;
 import data.constants.ApplicationIdentifier;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,6 +26,7 @@ public class TestNegativeLogIn extends BasicWebScenario {
     }
 
     @Test(dataProvider = "csvReader", dataProviderClass = CsvDataProvidersUtils.class)
+    @TmsLink(value = "ID:TC030")
     public void negativeLogInTest(Map<String, String> testData) {
 
         String username = testData.get("username");
