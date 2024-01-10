@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BasePageObject {
 
@@ -25,6 +27,10 @@ public class BasePageObject {
         this.log = log;
     }
 
+    public BasePageObject(WebDriver driver) {
+        this.driver = driver;
+    }
+
     /**
      * Open page with given url
      */
@@ -37,6 +43,14 @@ public class BasePageObject {
      */
     protected WebElement findElement(By locator) {
         return driver.findElement(locator);
+    }
+
+    public List<String> getTextFromListOfElements(By locator) {
+        List<WebElement> listOfElements = driver.findElements(locator);
+        return new ArrayList<>(listOfElements
+                .stream()
+                .map(WebElement::getText)
+                .toList());
     }
 
     /**
@@ -98,4 +112,15 @@ public class BasePageObject {
         String xpath = String.format(locator, menuItems.getValue());
         return By.xpath(xpath);
     }
+
+    /** Switch to iFrame using it's locator */
+    protected void switchToFrame(By frameLocator){
+        driver.switchTo().frame(findElement(frameLocator));
+    }
+
+    /** Switch from iFrame */
+    protected void switchFromFrame(){
+        driver.switchTo().defaultContent();
+    }
+
 }

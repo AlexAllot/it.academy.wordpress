@@ -1,40 +1,46 @@
 package apps.web.Wordpress;
 
-import apps.web.BasicWebScenario;
-import apps.web.Wordpress.pages.LoginPage;
-import apps.web.Wordpress.pages.PostsPage;
-import apps.web.Wordpress.pages.WordPressHomePage;
-import data.constants.ApplicationIdentifier;
+import apps.web.Wordpress.pages.*;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
 
-public class TestWordpress extends BasicWebScenario {
+public class TestWordpress extends TestUtilities {
 
-    public TestWordpress() {
-        super(ApplicationIdentifier.WORDPRESS);
-    }
 
-    @BeforeMethod
-    public void openLoginPage() throws IOException {
-        LoginPage loginPage = new LoginPage(driver, log);
-        log.info("Open page: " + getAppUrl());
-        loginPage.openMainPage(getAppUrl());
+
+    @Test
+    @Parameters({ "username", "password" })
+    public void testOpenMediaPageSuccessful(String username, String password){
+        mediaPage = new MediaPage(driver, log);
+        wordPressHomePage = new WordPressHomePage(driver, log);
+        loginPage.logIn(username, password, loginPage.DEFAULT_WAIT_IN_SEC);
+        wordPressHomePage.clickMediaItemOnHomePage();
+        log.info("Verifying that 'Media' page is opened ...");
+        Assert.assertTrue(mediaPage.isPageOpened(), "'Media' page wasn't opened");
     }
 
     @Test
     @Parameters({ "username", "password" })
-    public void testPostsElementIsPresent(String username, String password){
-        LoginPage loginPage = new LoginPage(driver, log);
-        PostsPage postsPage = new PostsPage(driver, log);
-        WordPressHomePage wordPressHomePage = new WordPressHomePage(driver, log);
+    public void testOpenPagesPageSuccessful(String username, String password){
+        pagesPage = new PagesPage(driver, log);
+        wordPressHomePage = new WordPressHomePage(driver, log);
         loginPage.logIn(username, password, loginPage.DEFAULT_WAIT_IN_SEC);
-        wordPressHomePage.clickPostsItemOnHomePage();
-        log.info("Verifying that title item on 'Posts' page is exist");
-        Assert.assertTrue(postsPage.isElementExist(), "Title 'Posts' is not exist on the page");
+        wordPressHomePage.clickPagesItemOnHomePage();
+        log.info("Verifying that 'Pages' page is opened ...");
+        Assert.assertTrue(pagesPage.isPageOpened(), "'Pages' page wasn't opened");
+    }
+
+    @Test
+    @Parameters({ "username", "password" })
+    public void testOpenCommentsPageSuccessful(String username, String password){
+        commentsPage = new CommentsPage(driver, log);
+        wordPressHomePage = new WordPressHomePage(driver, log);
+        loginPage.logIn(username, password, loginPage.DEFAULT_WAIT_IN_SEC);
+        wordPressHomePage.clickCommentsItemOnHomePage();
+        log.info("Verifying that 'Comments' page is opened ...");
+        Assert.assertTrue(commentsPage.isPageOpened(), "'Comments' page wasn't opened");
     }
 
 
