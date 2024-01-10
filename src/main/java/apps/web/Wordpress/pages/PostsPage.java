@@ -46,5 +46,4 @@ public class PostsPage extends BasePageObject {
         waitForWebElementAndClick(trashBtn, DEFAULT_WAIT_IN_SEC);
     }
 
-
 }
