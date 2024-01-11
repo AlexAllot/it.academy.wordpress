@@ -47,4 +47,35 @@ public class TestWordpressMainPage extends TestUtilities {
         Assert.assertTrue(commentsPage.isPageOpened(), "'Comments' page wasn't opened");
     }
 
+    @Test
+    @Parameters({"username", "password"})
+    public void testImageUploadSuccessful(String username, String password) {
+        mediaPage = new MediaPage(driver, log);
+        wordPressHomePage = new WordPressHomePage(driver, log);
+        uploadNewMediaPage = new UploadNewMediaPage(driver, log);
+        loginPage.logIn(username, password, loginPage.DEFAULT_WAIT_IN_SEC);
+        Allure.addAttachment("Step", "Click on Media item on home page");
+        wordPressHomePage.clickMediaItemOnHomePage();
+        mediaPage.openUploadMediaPage();
+        uploadNewMediaPage.selectFile(filename);
+        uploadNewMediaPage.pushUploadButton();
+        Assert.assertTrue(uploadNewMediaPage.getUploadedFilesNames().contains(filename));
+    }
+
+    @Test(dependsOnMethods = "testImageUploadSuccessful")
+    @Parameters({"username", "password"})
+    public void testDeleteFileSuccessful(String username, String password) {
+        mediaPage = new MediaPage(driver, log);
+        wordPressHomePage = new WordPressHomePage(driver, log);
+        uploadNewMediaPage = new UploadNewMediaPage(driver, log);
+        wordpressOnAzureMainPage = new WordpressOnAzurePublishPage(driver, log);
+        loginPage.logIn(username, password, loginPage.DEFAULT_WAIT_IN_SEC);
+        wordPressHomePage.clickMediaItemOnHomePage();
+        uploadNewMediaPage.moveToTrashElementAndClick();
+        uploadNewMediaPage.acceptAllert();
+        wordpressOnAzureMainPage.goToDashboard();
+        wordPressHomePage.clickMediaItemOnHomePage();
+        Assert.assertFalse(uploadNewMediaPage.isElementExist(filename));
+    }
+
 }
