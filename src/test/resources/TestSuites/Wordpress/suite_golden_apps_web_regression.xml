@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="E2E tests for Wordpress Web">
+
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
+
+    <suite-files>
+        <suite-file path="test_login_page.xml"/>
+        <suite-file path="test_posts_page.xml"/>
+        <suite-file path="test_wordpress_main_page.xml"/>
+        <suite-file path="test_media_page.xml"/>
+    </suite-files>
+
+</suite>

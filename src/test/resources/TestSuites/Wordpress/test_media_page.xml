@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Media page Wordpress - Web" verbose="1">
+
+    <test name="Test 'Media' page - Wordpress">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="username" value="testAccount_5"/>
+        <parameter name="password" value="Android2021"/>
+        <classes>
+            <class name="apps.web.Wordpress.TestMedia"/>
+        </classes>
+    </test>
+
+</suite>
