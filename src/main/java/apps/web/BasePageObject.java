@@ -16,11 +16,11 @@ import java.util.List;
 public class BasePageObject {
 
     protected WebDriver driver;
+
     protected Logger log;
     public WebElement element;
+
     public int DEFAULT_WAIT_IN_SEC = 10;
-
-
 
     public BasePageObject(WebDriver driver, Logger log) {
         this.driver = driver;

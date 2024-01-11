@@ -3,6 +3,7 @@ package apps.web.Wordpress;
 import apps.web.BasicWebScenario;
 import apps.web.Wordpress.pages.*;
 import data.constants.ApplicationIdentifier;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterClass;
@@ -22,11 +23,12 @@ public class TestUtilities extends BasicWebScenario {
     PagesPage pagesPage;
     CommentsPage commentsPage;
     WordpressOnAzurePublishPage wordpressOnAzureMainPage;
+    UploadNewMediaPage uploadNewMediaPage;
     String expectedTextTitle = "Test template13";
     SoftAssert softAssert;
     RequestSpecification requestSpecification;
     Response response;
-
+    String filename = "image.png";
 
     public TestUtilities() {
         super(ApplicationIdentifier.WORDPRESS);

@@ -12,7 +12,6 @@ public enum TopMenuItems {
 
     private final String value;
 
-
     TopMenuItems(String value) {
         this.value=value;
     }

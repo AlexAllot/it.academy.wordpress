@@ -2,6 +2,7 @@ package apps.web.Wordpress.pages;
 
 import apps.web.BasePageObject;
 import data.constants.TopMenuItems;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -36,6 +37,7 @@ public class WordPressHomePage extends BasePageObject {
         waitForWebElementAndClick(getMenuItem(ITEM_PATTERN, TopMenuItems.COMMENTS), DEFAULT_WAIT_IN_SEC);
     }
 
+    @Step("Get username after log in")
     public String getDisplayName(){
        log.info("Getting displayed userName after log in on site");
        return findElement(displayNameLocator).getText();

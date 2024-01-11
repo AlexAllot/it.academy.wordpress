@@ -2,20 +2,22 @@ package setup;
 
 import data.constants.ApplicationIdentifier;
 import data.constants.Platform;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
+import utils.AllureEnvironmentUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class BaseTest {
+
 
     protected WebDriver driver;
     protected Logger log;
@@ -50,6 +52,15 @@ public class BaseTest {
         }
     }
 
+    @AfterSuite(alwaysRun = true)
+    public void setAllureEnvironment() {
+        Map<String, String> envData = new HashMap<>();
+        envData.put("OS version: ", "Windows 10");
+        envData.put("Chrome version: ", "120.0.6099.201");
+        AllureEnvironmentUtils.createAllureEnvironmentFile(envData);
+    }
+
+    @Step("Get url")
     protected String getAppUrl() throws IOException {
         properties = new Properties();
         properties.load(new FileInputStream("src/main/resources/apps/" + application.getPropertiesPath()));

@@ -1,6 +1,7 @@
 package apps.web.Wordpress.pages;
 
 import apps.web.BasePageObject;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,7 @@ public class LoginPage extends BasePageObject {
     /**
      * Execute log in
      */
+    @Step("Log in")
     public void logIn(String username, String password, int timeOutInSeconds){
         log.info("Executing LogIn with username [" + username + "] and password [" + password + "]");
         typeMethod(username, usernameLocator);

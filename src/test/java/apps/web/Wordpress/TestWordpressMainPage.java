@@ -1,13 +1,14 @@
 package apps.web.Wordpress;
 
 import apps.web.Wordpress.pages.*;
+import io.qameta.allure.Allure;
 import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 
-public class TestWordpress extends TestUtilities {
+public class TestWordpressMainPage extends TestUtilities {
 
     @Test
     @Parameters({ "username", "password" })
@@ -16,6 +17,7 @@ public class TestWordpress extends TestUtilities {
         mediaPage = new MediaPage(driver, log);
         wordPressHomePage = new WordPressHomePage(driver, log);
         loginPage.logIn(username, password, loginPage.DEFAULT_WAIT_IN_SEC);
+        Allure.addAttachment("Step", "Click on Media locator on home page");
         wordPressHomePage.clickMediaItemOnHomePage();
         log.info("Verifying that 'Media' page is opened ...");
         Assert.assertTrue(mediaPage.isPageOpened(), "'Media' page wasn't opened");

@@ -3,10 +3,15 @@
 
 <suite name="E2E tests for Wordpress Web">
 
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
+
     <suite-files>
-        <suite-file path="test_login_suite.xml"/>
-        <suite-file path="test_posts_suite.xml"/>
-        <suite-file path="test_wordpress_web.xml"/>
+        <suite-file path="test_login_page.xml"/>
+        <suite-file path="test_posts_page.xml"/>
+        <suite-file path="test_wordpress_main_page.xml"/>
+        <suite-file path="test_media_page.xml"/>
     </suite-files>
 
 </suite>
